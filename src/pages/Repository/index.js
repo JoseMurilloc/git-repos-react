@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
+import Skeleton from 'react-loading';
 
 import api from '../../services/api';
+
+import { Loading } from './styles';
 
 function Repository() {
   const { params } = useRouteMatch();
@@ -34,7 +37,13 @@ function Repository() {
 
   return (
     <>
-      <h1>Repository</h1>
+      {loading ? (
+        <Loading>
+          <Skeleton width={25} height={25} />
+        </Loading>
+      ) : (
+        <h1>Repository</h1>
+      )}
     </>
   );
 }
